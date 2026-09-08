@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Slider from '../components/Slider'
-import Buscador from '../components/Buscador'
+import Buscador, { type SearchFilters } from '../components/Buscador'
+import EventCards, { events } from '../components/cards'
+import type { EventCardProps } from '../components/cards'
 import Footer from '../components/Footer'
 import type { SlideItem } from '../components/Slider'
 
@@ -15,12 +18,30 @@ const imagenes: SlideItem[] = [
 ]
 
 function Home() {
+  const [filteredEvents, setFilteredEvents] = useState<EventCardProps[]>(events)
+
+  function handleSearch({ city, category, date, query }: SearchFilters) {
+    const normalize = (value: string) =>
+      value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+
+    setFilteredEvents(events.filter((event) => {
+      const matchesCity = !city || normalize(event.city) === normalize(city)
+      const matchesCategory = !category || event.category === category
+      const matchesDate = !date || event.date === date
+      const searchableText = normalize(`${event.title} ${event.organizer} ${event.city}`)
+      const matchesQuery = !query || searchableText.includes(normalize(query))
+
+      return matchesCity && matchesCategory && matchesDate && matchesQuery
+    }))
+  }
+
   return (
     <>
       <Navbar />
       <main className="container-fluid px-0 pt-1 pb-5" id="eventos">
         <Slider imagenes={imagenes} />
-        <Buscador />
+        <Buscador onSearch={handleSearch} />
+        <EventCards filteredEvents={filteredEvents} />
       </main>
       <Footer />
     </>

@@ -3,10 +3,10 @@ function Footer() {
     <footer className="bg-white text-success py-1 mt-1">
       <div className="container-fluid px-5">
         <div className="row row-cols-1 row-cols-md-3 g-4 align-items-start">
-          <div className="col d-flex flex-column">
+          <div className="col d-flex flex-column align-items-center text-center">
            
-            <img src="logo.png" alt="EcoTíquet" height="72" className="mb-3 object-fit-contain object-position-start" />
-            <p className="mb-0">Encuentra y gestiona tus tickets de eventos.</p>
+            <img src="logo.png" alt="EcoTíquet" height="72" className="mb-3 object-fit-contain object-position-center"/>
+            <p className="mb-1 ">Encuentra y gestiona tus tickets de eventos.</p>
           </div>
           <div className="col d-flex flex-column">
             <h5 className="mb-1">Enlaces</h5>

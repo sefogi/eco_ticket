@@ -1,18 +1,42 @@
 import { CalendarDays, Grid3X3, MapPin, Search } from 'lucide-react'
+import type { FormEvent } from 'react'
 
-export default function Buscador() {
+export type SearchFilters = {
+  city: string
+  category: string
+  date: string
+  query: string
+}
+
+type BuscadorProps = {
+  onSearch: (filters: SearchFilters) => void
+}
+
+export default function Buscador({ onSearch }: BuscadorProps) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+
+    onSearch({
+      city: String(formData.get('city') ?? ''),
+      category: String(formData.get('category') ?? ''),
+      date: String(formData.get('date') ?? ''),
+      query: String(formData.get('query') ?? '').trim().toLowerCase(),
+    })
+  }
+
   return (
     <section className="container-fluid px-2 px-md-5 py-4" aria-label="Buscar eventos">
       <form
         className="row g-0 overflow-hidden rounded-2 border border-success-subtle bg-white shadow-sm"
-        onSubmit={(event) => event.preventDefault()}
+        onSubmit={handleSubmit}
       >
         <div className="col-12 col-md-6 col-xl-2 border-end border-bottom border-success-subtle">
           <div className="input-group h-100">
             <span className="input-group-text border-0 bg-white text-success">
               <MapPin size={21} aria-hidden="true" />
             </span>
-            <select id="event-city" className="form-select border-0 bg-white ps-1 py-3" defaultValue="" aria-label="Ciudad">
+            <select id="event-city" name="city" className="form-select border-0 bg-white ps-1 py-3" defaultValue="" aria-label="Ciudad">
               <option value="" disabled>Ciudad</option>
               <option value="bogota">Bogotá</option>
               <option value="medellin">Medellín</option>
@@ -29,11 +53,13 @@ export default function Buscador() {
             <span className="input-group-text border-0 bg-white text-success">
               <Grid3X3 size={21} aria-hidden="true" />
             </span>
-            <select id="event-category" className="form-select border-0 bg-white ps-1 py-3" defaultValue="" aria-label="Categoría">
+            <select id="event-category" name="category" className="form-select border-0 bg-white ps-1 py-3" defaultValue="" aria-label="Categoría">
               <option value="" disabled>Categoría</option>
               <option value="music">Música</option>
               <option value="theater">Teatro</option>
               <option value="sports">Deportes</option>
+              <option value="concerts">Conciertos</option>
+              <option value="diy">Bricolaje</option>
             </select>
           </div>
         </div>
@@ -43,7 +69,7 @@ export default function Buscador() {
             <span className="input-group-text border-0 bg-white text-success">
               <CalendarDays size={21} aria-hidden="true" />
             </span>
-            <input id="event-date" type="date" className="form-control border-0 bg-white ps-1 py-3" aria-label="Fecha" />
+            <input id="event-date" name="date" type="date" className="form-control border-0 bg-white ps-1 py-3" aria-label="Fecha" />
           </div>
         </div>
 
@@ -54,6 +80,7 @@ export default function Buscador() {
             </span>
             <input
               id="event-search"
+              name="query"
               type="search"
               className="form-control border-0 bg-white ps-1 py-3 fw-semibold"
               placeholder="Buscar por artista, evento..."
