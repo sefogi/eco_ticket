@@ -17,6 +17,17 @@
   }
 }
 
+.slider-image {
+  height: 550px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .slider-image {
+    height: 220px;
+  }
+}
+
 .hero {
   position: relative;
 
@@ -112,7 +123,7 @@
   margin: 32px 0 0;
 
   .logo {
-    height: 18px;
+    height: 20px;
   }
 
   a {

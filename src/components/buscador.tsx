@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-const Buscador = (props: Props) => {
+const Buscador = () => {
   return <div>buscador</div>
 }
 
