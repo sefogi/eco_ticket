@@ -1,5 +1,6 @@
 import { CalendarDays, Grid3X3, MapPin, Search } from 'lucide-react'
-import type { FormEvent } from 'react'
+import {useRef} from 'react'
+import type { SubmitEvent } from 'react'
 
 export type SearchFilters = {
   city: string
@@ -13,7 +14,13 @@ type BuscadorProps = {
 }
 
 export default function Buscador({ onSearch }: BuscadorProps) {
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const dateRef = useRef<HTMLInputElement | null>(null)
+
+  function openCalendar() {
+    dateRef.current?.showPicker()
+  }
+
+  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
 
@@ -66,10 +73,23 @@ export default function Buscador({ onSearch }: BuscadorProps) {
 
         <div className="col-12 col-md-6 col-xl-2 border-end border-bottom border-success-subtle">
           <div className="input-group h-100">
-            <span className="input-group-text border-0 bg-white text-success">
+            <button
+              type="button"
+              className="input-group-text border-0 bg-white text-success"
+              onClick={openCalendar}
+              aria-label="Abrir calendario"
+            >
               <CalendarDays size={21} aria-hidden="true" />
-            </span>
-            <input id="event-date" name="date" type="date" className="form-control border-0 bg-white ps-1 py-3" aria-label="Fecha" />
+            </button>
+
+            <input
+              ref={dateRef}
+              id="event-date"
+              name="date"
+              type="date"
+              className="form-control border-0 bg-white ps-1 py-3"
+              aria-label="Fecha"
+            />
           </div>
         </div>
 
@@ -95,7 +115,7 @@ export default function Buscador({ onSearch }: BuscadorProps) {
             <span className="d-inline d-xl-none">Buscar eventos</span>
           </button>
         </div>
-      </form>
+          </form>
     </section>
   )
-}
+    }

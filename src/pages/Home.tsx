@@ -38,9 +38,13 @@ function Home() {
   return (
     <>
       <Navbar />
-      <main className="container-fluid px-0 pt-1 pb-5" id="eventos">
+      <main className="container-fluid px-0 pt-0 pb-5" id="eventos">
+      <section className="container-fluid d-flex justify-content-center align-items-center py-5 bg-success " style={{ minHeight:"50vh" }} >
+      <Buscador onSearch={handleSearch} />
+      </section>
+      
         <Slider imagenes={imagenes} />
-        <Buscador onSearch={handleSearch} />
+        
         <EventCards filteredEvents={filteredEvents} />
       </main>
       <Footer />
