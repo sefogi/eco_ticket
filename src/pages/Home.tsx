@@ -37,17 +37,17 @@ function Home() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <main className="container-fluid px-0 pt-0 pb-5" id="eventos">
       <section className="container-fluid d-flex justify-content-center align-items-center py-5 bg-success " style={{ minHeight:"50vh" }} >
       <Buscador onSearch={handleSearch} />
       </section>
-      
+      {/* //este es el slider de imagenes */}
         <Slider imagenes={imagenes} />
-        
+        {/* esta es la seccion de eventos destacados */}
         <EventCards filteredEvents={filteredEvents} />
       </main>
-      <Footer />
+      
     </>
   )
 }
