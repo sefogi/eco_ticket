@@ -43,7 +43,7 @@ function Home() {
       <Buscador onSearch={handleSearch} />
       </section>
       {/* //este es el slider de imagenes */}
-        <Slider imagenes={imagenes} />
+        {/* <Slider imagenes={imagenes} /> */}
         {/* esta es la seccion de eventos destacados */}
         <EventCards filteredEvents={filteredEvents} />
       </main>
