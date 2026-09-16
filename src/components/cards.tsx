@@ -1,6 +1,7 @@
 import eventImage from '../assets/Slider2.jpg'
 import eventImageTwo from '../assets/slide1.png'
 import eventImageThree from '../assets/slider3.jpg'
+import eventImageFour from '../assets/bg-green.webp'
 
 export type EventCardProps = {
 	title: string
@@ -72,6 +73,17 @@ export const events: EventCardProps[] = [
 		weekday: 'Sáb',
 		image: eventImageThree,
 	},
+	{
+		title: 'Festival de Cine Ambiental',
+		organizer: 'Eco-ticket',
+		city: 'Tuluá',
+		category: 'sports',
+		date: '2026-12-10',
+		day: '10',
+		month: 'Dic',
+		weekday: 'Sáb',
+		image: eventImageFour,
+	},
 ]
 
 export default function EventCards({ filteredEvents = events }: { filteredEvents?: EventCardProps[] }) {
@@ -80,7 +92,7 @@ export default function EventCards({ filteredEvents = events }: { filteredEvents
 			<h2 id="events-title" className="mb-3 fs-4 fw-bold text-dark">Eventos destacados</h2>
 			<div className="row g-4">
 				{filteredEvents.map((event) => (
-					<div className="col-12 col-md-6 col-lg-4" key={event.title}>
+					<div className="col-12 col-md-6 col-lg-3" key={event.date + event.title}>
 						<EventCard {...event} />
 					</div>
 				))}
