@@ -8,6 +8,7 @@ export type EventCardProps = {
 	organizer: string
 	city: string
 	category: string
+	description?: string
 	date: string
 	day: string
 	month: string
@@ -36,6 +37,7 @@ function EventCard({ title, organizer, city, day, month, weekday, image }: Event
 				</div>
 			</div>
 		</article>
+		
 	)
 }
 
@@ -45,6 +47,7 @@ export const events: EventCardProps[] = [
 		organizer: 'Eco Ticket',
 		city: 'Cali',
 		category: 'music',
+		description: 'Un concierto de rock con enfoque ecológico, promoviendo la sostenibilidad y la conciencia ambiental.',
 		date: '2026-11-14',
 		day: '14',
 		month: 'Nov',
@@ -56,6 +59,7 @@ export const events: EventCardProps[] = [
 		organizer: 'Eco Eventos',
 		city: 'Medellín',
 		category: 'music',
+		description: 'Un festival que combina música en vivo con actividades al aire libre y conciencia ambiental.',
 		date: '2026-10-22',
 		day: '22',
 		month: 'Oct',
@@ -67,6 +71,7 @@ export const events: EventCardProps[] = [
 		organizer: 'Eco-ticket',
 		city: 'Tuluá',
 		category: 'sports',
+		description: 'Una carrera deportiva para promover la conservación del río Tuluá y la vida saludable.',
 		date: '2026-12-05',
 		day: '05',
 		month: 'Dic',
@@ -78,11 +83,12 @@ export const events: EventCardProps[] = [
 		organizer: 'Eco-ticket',
 		city: 'Tuluá',
 		category: 'sports',
+		description: 'Un festival de cine que presenta películas y documentales sobre temas ambientales y sostenibilidad.',
 		date: '2026-12-10',
 		day: '10',
 		month: 'Dic',
 		weekday: 'Sáb',
-		image: eventImageFour,
+		image: "https://i.postimg.cc/L4VVF5vj/festival-de-cine-ambiental.jpg",
 	},
 ]
 
@@ -95,6 +101,7 @@ export default function EventCards({ filteredEvents = events }: { filteredEvents
 					<div className="col-12 col-md-6 col-lg-3" key={event.date + event.title}>
 						<EventCard {...event} />
 					</div>
+					
 				))}
 				{filteredEvents.length === 0 && (
 					<div className="col-12">
