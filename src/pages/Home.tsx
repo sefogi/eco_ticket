@@ -1,21 +1,21 @@
 import { useState } from 'react'
-import Navbar from '../components/Navbar'
-import Slider from '../components/Slider'
+// import Navbar from '../components/Navbar'
+// import Slider from '../components/Slider'
 import Buscador, { type SearchFilters } from '../components/Buscador'
 import EventCards, { events } from '../components/cards'
 import type { EventCardProps } from '../components/cards'
-import Footer from '../components/Footer'
+// import Footer from '../components/Footer'
 import type { SlideItem } from '../components/Slider'
 
-import image1 from '../assets/slide1.png'
-import image2 from '../assets/slider2.jpg'
-import image3 from '../assets/slider3.jpg'
+// import image1 from '../assets/slide1.png'
+// import image2 from '../assets/slider2.jpg'
+// import image3 from '../assets/slider3.jpg'
 
-const imagenes: SlideItem[] = [
-  { id: 1, url: image1, alt: "Imagen 1" },
-  { id: 2, url: image2, alt: "Imagen 2" },
-  { id: 3, url: image3, alt: "Imagen 3" }
-]
+// const imagenes: SlideItem[] = [
+//   { id: 1, url: image1, alt: "Imagen 1" },
+//   { id: 2, url: image2, alt: "Imagen 2" },
+//   { id: 3, url: image3, alt: "Imagen 3" }
+// ]
 
 function Home() {
   const [filteredEvents, setFilteredEvents] = useState<EventCardProps[]>(events)
@@ -39,7 +39,7 @@ function Home() {
     <>
       {/* <Navbar /> */}
       <main className="container-fluid px-0 pt-0 pb-5" id="eventos">
-      <section className="container-fluid d-flex justify-content-center align-items-center py-5 bg-success " style={{ minHeight:"50vh" }} >
+      <section className="container-fluid d-flex justify-content-center align-items-center py-5 bg-success buscador ">
       <Buscador onSearch={handleSearch} />
       </section>
       {/* //este es el slider de imagenes */}

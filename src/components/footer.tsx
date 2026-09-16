@@ -14,16 +14,18 @@ function Footer() {
               <a className="text-success text-decoration-none" href="/">
                 Inicio
               </a>
-              <a className="text-success text-decoration-none" href="#eventos">
+              <a className="text-success text-decoration-none" href="/eventos">
                 Eventos
               </a>
-              <a className="text-success text-decoration-none" href="#">
+              <a className="text-success text-decoration-none" href="/mis-tickets">
                 Mis tickets
               </a>
             </nav>
           </div>
           <div className="col d-flex flex-column">
-            <h5 className="mb-3">Soporte</h5>
+            <a className="text-success text-decoration-none fs-4 mb-3" href="/soporte">
+              Soporte
+            </a>
             <p className="mb-0">¿Necesitas ayuda? Contacta con nosotros.</p>
           </div>
         </div>

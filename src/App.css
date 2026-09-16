@@ -1,3 +1,12 @@
+.buscador {
+  min-height: 60vh;
+  background-image: url('/src/assets/bg-green.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
