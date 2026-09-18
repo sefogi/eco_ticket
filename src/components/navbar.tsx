@@ -43,7 +43,7 @@ const Navbar = () => {
           </ul>
 
           <div className="d-flex align-items-center gap-2 me-lg-5">
-            <a className="fw-semibold text-success fs-5"href="/Login">Mi Cuenta</a>
+            <a className="fw-semibold text-success fs-5"href="/login">Mi Cuenta</a>
             <i className="bi bi-person-circle fs-2 text-success"></i>
           </div>
         </div>
