@@ -1,8 +1,6 @@
-import React from 'react'
-
 type Props = {}
 
-const Soporte = (props: Props) => {
+const Soporte = (_props: Props) => {
   return (
     <div>Soporte</div>
   )
