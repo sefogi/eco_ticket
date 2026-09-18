@@ -1,10 +1,53 @@
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
+import {
+  getCurrentUser,
+  logout,
+  type User,
+} from '../auth/auth'
+
 const Navbar = () => {
+  const navigate = useNavigate()
+
+  const [user, setUser] = useState<User | null>(
+    getCurrentUser()
+  )
+
+  useEffect(() => {
+    const updateUser = () => {
+      setUser(getCurrentUser())
+    }
+
+    window.addEventListener('auth-change', updateUser)
+
+    return () => {
+      window.removeEventListener('auth-change', updateUser)
+    }
+  }, [])
+
+  function handleLogout() {
+    logout()
+    navigate('/')
+  }
+
   return (
     <nav className="navbar navbar-expand-lg border-bottom border-success border-5 bg-white">
+
       <div className="container-fluid px-4">
-        <a className="navbar-brand d-flex align-items-center fw-bold text-success ms-lg-5" href="/">
-          <img src="logo.png" alt="EcoTíquet" height="60" className="me-2" />
-        </a>
+
+        <Link
+          className="navbar-brand d-flex align-items-center fw-bold text-success ms-lg-5"
+          to="/"
+        >
+          <img
+            src="/logo.png"
+            alt="EcoTíquet"
+            height="60"
+            className="me-2"
+          />
+        </Link>
+
 
         <button
           className="navbar-toggler"
@@ -18,38 +61,127 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarEcoTicket">
+
+        <div
+          className="collapse navbar-collapse"
+          id="navbarEcoTicket"
+        >
+
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+
             <li className="nav-item">
-              <a className="nav-link text-secondary fw-semibold fs-5 " href="/">
+              <Link
+                className="nav-link text-secondary fw-semibold fs-5"
+                to="/"
+              >
                 Inicio
-              </a>
+              </Link>
             </li>
+
+
             <li className="nav-item">
-              <a className="nav-link text-secondary fw-semibold fs-5" href="/Eventos">
+              <Link
+                className="nav-link text-secondary fw-semibold fs-5"
+                to="/eventos"
+              >
                 Eventos
-              </a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link text-secondary fw-semibold fs-5" href="/MisTickets">
-                Mis Tickets
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-secondary fw-semibold fs-5" href="/Soporte">
-                Soporte y Ayuda
-              </a>
-            </li>
+
+
+            {user?.role === 'CLIENTE' && (
+              <li className="nav-item">
+                <Link
+                  className="nav-link text-secondary fw-semibold fs-5"
+                  to="/mis_tickets"
+                >
+                  Mis Tickets
+                </Link>
+              </li>
+            )}
+
+
+            {!user && (
+              <li className="nav-item">
+                <Link
+                  className="nav-link text-secondary fw-semibold fs-5"
+                  to="/soporte"
+                >
+                  Soporte y Ayuda
+                </Link>
+              </li>
+            )}
+
           </ul>
 
-          <div className="d-flex align-items-center gap-2 me-lg-5">
-            <a className="fw-semibold text-success fs-5"href="/login">Mi Cuenta</a>
-            <i className="bi bi-person-circle fs-2 text-success"></i>
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
-};
 
-export default Navbar;
+          <div className="d-flex align-items-center gap-3 me-lg-5">
+
+            {!user ? (
+              <>
+                <Link
+                  className="fw-semibold text-success fs-5"
+                  to="/login"
+                >
+                  Mi Cuenta
+                </Link>
+
+                <i className="bi bi-person-circle fs-2 text-success"></i>
+              </>
+            ) : (
+              <>
+                <div className="text-end">
+
+                  <div className="fw-semibold text-success">
+                    {user.username}
+                  </div>
+
+                  <small className="text-muted">
+                    {user.role}
+                  </small>
+
+                </div>
+
+
+                {user.role === 'ADMINISTRADOR' && (
+                  <Link
+                    to="/admin"
+                    className="btn btn-outline-success"
+                  >
+                    Panel Admin
+                  </Link>
+                )}
+
+
+                {user.role === 'AGENTE' && (
+                  <Link
+                    to="/agente"
+                    className="btn btn-outline-success"
+                  >
+                    Panel Agente
+                  </Link>
+                )}
+
+
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  onClick={handleLogout}
+                >
+                  Cerrar sesión
+                </button>
+
+              </>
+            )}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </nav>
+  )
+}
+
+export default Navbar

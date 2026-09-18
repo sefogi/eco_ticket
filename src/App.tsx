@@ -1,16 +1,8 @@
-import "./App.css";
-import RoutesApp from "./routes/Routes";
-import  Navbar  from "./components/Navbar";
-import Footer from "./components/Footer";
+import './App.css'
+import RoutesApp from './routes/Routes'
 
 function App() {
-  return (
-    <>
-          <Navbar />
-          <RoutesApp />
-          <Footer />
-    </>
-  );
+  return <RoutesApp />
 }
 
-export default App;
+export default App
