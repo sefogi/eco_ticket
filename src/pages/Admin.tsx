@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { getCurrentUser } from '../auth/auth'
+import AdminReports from '../components/AdminReports'
 
 function Admin() {
   const navigate = useNavigate()
@@ -29,6 +30,7 @@ function Admin() {
 
       <div className="row g-4">
 
+        {/* EVENTOS */}
         <div className="col-md-4">
           <div className="card h-100 shadow-sm border-0">
             <div className="card-body">
@@ -49,6 +51,7 @@ function Admin() {
           </div>
         </div>
 
+        {/* USUARIOS */}
         <div className="col-md-4">
           <div className="card h-100 shadow-sm border-0">
             <div className="card-body">
@@ -69,6 +72,7 @@ function Admin() {
           </div>
         </div>
 
+        {/* TICKETS */}
         <div className="col-md-4">
           <div className="card h-100 shadow-sm border-0">
             <div className="card-body">
@@ -90,6 +94,9 @@ function Admin() {
         </div>
 
       </div>
+
+      {/* REPORTES */}
+      <AdminReports />
 
     </main>
   )
