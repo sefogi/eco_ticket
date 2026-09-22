@@ -40,26 +40,39 @@ function Login() {
   }
 
   return (
-    <main className="container py-5">
-      <div className="row justify-content-center">
-        <div className="col-12 col-sm-10 col-md-6 col-lg-4">
+<main className="container py-5 ">
+  <div className="row justify-content-center ">
+    {/* Ampliamos el contenedor principal para las 2 columnas */}
+    <div className="col-12 col-lg-10 col-xl-8">
+      
+      <div className="card shadow border-0 overflow-hidden">
+        <div className="row g-0">
+          
+          {/* LADO IZQUIERDO: Panel Verde con Imagen de Fondo */}
+          <div 
+            className="col-md-5 bg-success text-white d-flex flex-column justify-content-center align-items-center p-4 text-center position-relative buscador">
+            {/* Logo limpio sin fondo blanco ni óvalo */}
+            <img
+              src="/src/assets/logo_2.png"
+              alt="Eco Tíquet Logo"
+              height="80"
+              className="mb-3"
+            />
+            <h3 className="fw-bold mb-2">¡Bienvenido!</h3>
+            <p className="small mb-0 opacity-75">
+              Gestión sostenible e inteligente para tus tíquets.
+            </p>
+          </div>
 
-          <div className="card shadow border-0">
-            <div className="card-body p-4">
+          {/* LADO DERECHO: Formulario de Iniciar Sesión */}
+          <div className="col-md-7">
+            <div className="card-body p-4 p-md-5">
 
               <div className="text-center mb-4">
-                <img
-                  src="/logo.png"
-                  alt="Eco Tíquet"
-                  height="60"
-                  className="mb-3"
-                />
-
                 <h2 className="text-success fw-bold">
                   Iniciar sesión
                 </h2>
-
-                <p className="text-muted">
+                <p className="text-muted small">
                   Accede a tu cuenta de Eco Tíquet
                 </p>
               </div>
@@ -123,11 +136,11 @@ function Login() {
 
               </form>
 
-              <hr />
+              <hr className="my-4" />
 
               <div className="small text-muted">
                 <p className="mb-1 fw-semibold">
-                  Usuarios de prueba
+                  Usuarios de prueba:
                 </p>
 
                 <p className="mb-1">
@@ -148,7 +161,10 @@ function Login() {
 
         </div>
       </div>
-    </main>
+
+    </div>
+  </div>
+</main>
   )
 }
 

@@ -9,22 +9,73 @@
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-
-
+  --eco-green: #198754;
+  --eco-green-soft: #e8f7ee;
 }
 
 .bg_footer {
   background-color: #f2f2f7;
-  pading: 10px;
+  pading: 10px; 
 }
 
+.small-letter-spacing {
+  letter-spacing: 0.08em;
+}
+
+.admin-stat-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f5fbf7 100%);
+  border: 1px solid rgba(25, 135, 84, 0.08);
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px rgba(20, 70, 40, 0.04);
+}
+
+.admin-stat-icon {
+  width: 52px;
+  height: 52px;
+  font-size: 1.2rem;
+}
+
+.admin-stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.admin-stat-value {
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-weight: 700;
+  color: #1c1c1c;
+}
+
+.chart-container {
+  width: 100%;
+  min-height: 280px;
+  background: #ffffff;
+  border: 1px solid rgba(25, 135, 84, 0.08);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.admin-table thead th {
+  background-color: #f6faf7;
+  color: #1f2d1f;
+  font-weight: 700;
+  border-bottom: 0;
+}
+
+.admin-table tbody tr {
+  border-color: rgba(25, 135, 84, 0.08);
+}
+
+.admin-reports {
+  overflow: hidden;
+}
 
 .buscador {
   min-height: 60vh;
   background-image: url('/src/assets/bg-green.webp');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
 }
 
 

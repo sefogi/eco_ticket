@@ -73,77 +73,99 @@ function AdminReports() {
     )
   )
 
+  const stats = [
+    { label: 'Total de eventos', value: totalEvents, icon: 'bi bi-calendar-event' },
+    {
+      label: 'Precio promedio',
+      value: `$${averagePrice.toLocaleString('es-CO')}`,
+      icon: 'bi bi-cash-stack',
+    },
+    { label: 'Ciudades', value: cities.size, icon: 'bi bi-geo-alt' },
+  ]
+
   return (
-    <section className="admin-reports">
-      <div className="admin-reports-header">
-        <h1>Panel de Administrador</h1>
-        <p>Reportes y estadísticas del sistema</p>
-      </div>
+    <section className="card shadow-sm border-0 admin-reports mt-4">
+      <div className="card-body p-4 p-lg-5">
+        <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mb-4">
+          <div>
+            <p className="text-success fw-semibold text-uppercase mb-1 small-letter-spacing">
+              Resumen
+            </p>
+            <h2 className="h4 mb-0 text-dark fw-bold">Estadísticas del sistema</h2>
+          </div>
 
-      <div className="report-cards">
-        <div className="report-card">
-          <h3>Total de eventos</h3>
-          <p>{totalEvents}</p>
+          <span className="badge bg-success-subtle text-success rounded-pill px-3 py-2">
+            Actualizado hoy
+          </span>
         </div>
 
-        <div className="report-card">
-          <h3>Precio promedio</h3>
-          <p>${averagePrice.toLocaleString('es-CO')}</p>
+        <div className="row g-3 mb-4">
+          {stats.map((stat) => (
+            <div key={stat.label} className="col-md-4">
+              <div className="card border-0 h-100 admin-stat-card">
+                <div className="card-body d-flex align-items-center gap-3 p-3">
+                  <div className="admin-stat-icon bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center">
+                    <i className={stat.icon}></i>
+                  </div>
+
+                  <div>
+                    <p className="text-muted mb-1 admin-stat-label">{stat.label}</p>
+                    <h3 className="admin-stat-value mb-0">{stat.value}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div className="report-card">
-          <h3>Ciudades</h3>
-          <p>{cities.size}</p>
+        <div className="report-section">
+          <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <h3 className="h5 mb-0 text-dark fw-bold">Eventos por ciudad</h3>
+          </div>
+
+          <div className="chart-container">
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={eventsByCity}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                <XAxis dataKey="city" tickLine={false} axisLine={false} />
+                <YAxis allowDecimals={false} tickLine={false} axisLine={false} />
+                <Tooltip cursor={{ fill: 'rgba(25, 135, 84, 0.05)' }} />
+                <Bar dataKey="events" name="Eventos" fill="#198754" radius={[6, 6, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
         </div>
-      </div>
 
-      <div className="report-section">
-        <h2>Eventos por ciudad</h2>
+        <div className="report-section mt-4">
+          <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <h3 className="h5 mb-0 text-dark fw-bold">Eventos registrados</h3>
+          </div>
 
-        <div className="chart-container">
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={eventsByCity}>
-              <CartesianGrid strokeDasharray="3 3" />
-
-              <XAxis dataKey="city" />
-
-              <YAxis allowDecimals={false} />
-
-              <Tooltip />
-
-              <Bar dataKey="events" name="Eventos" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      <div className="report-section">
-        <h2>Eventos registrados</h2>
-
-        <div className="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Evento</th>
-                <th>Ubicación</th>
-                <th>Fecha</th>
-                <th>Precio</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {events.map((event) => (
-                <tr key={event.id}>
-                  <td>{event.id}</td>
-                  <td>{event.name}</td>
-                  <td>{event.location}</td>
-                  <td>{event.date}</td>
-                  <td>${event.price.toLocaleString('es-CO')}</td>
+          <div className="table-responsive">
+            <table className="table table-hover align-middle mb-0 admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Evento</th>
+                  <th>Ubicación</th>
+                  <th>Fecha</th>
+                  <th>Precio</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+
+              <tbody>
+                {events.map((event) => (
+                  <tr key={event.id}>
+                    <td>{event.id}</td>
+                    <td>{event.name}</td>
+                    <td>{event.location}</td>
+                    <td>{event.date}</td>
+                    <td>${event.price.toLocaleString('es-CO')}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>
