@@ -95,7 +95,7 @@ const Navbar = () => {
                   className="nav-link text-secondary fw-semibold fs-5"
                   to="/mis_tickets"
                 >
-                  Mis Tickets
+                  Mis Tickets 
                 </Link>
               </li>
             )}
