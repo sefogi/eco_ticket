@@ -108,6 +108,7 @@ function Login() {
                       <button type="submit" className="btn btn-success w-100">
                         Iniciar sesión
                       </button>
+                      <a href="/Register" className="btn btn-link w-100 mt-2 text-decoration-none">No tienes cuenta? Crea una</a>
                     </form>
 
                     <hr className="my-4" />

@@ -13,6 +13,32 @@
   --eco-green-soft: #e8f7ee;
 }
 
+.eco-card {
+          border: none;
+          border-radius: 1.25rem;
+          box-shadow: 0 10px 30px rgba(46, 125, 50, 0.1);
+        }
+        .btn-eco {
+          background-color: #2e7d32;
+          color: white;
+          border-radius: 0.75rem;
+          padding: 0.75rem;
+          font-weight: 600;
+        }
+        .btn-eco:hover {
+          background-color: #1b5e20;
+          color: white;
+        }
+        .logo-img {
+          width: 170px;
+          height: auto;
+          object-fit: cover;
+          
+         
+        }
+
+
+
 .bg_footer {
   background-color: #f2f2f7;
   pading: 10px; 

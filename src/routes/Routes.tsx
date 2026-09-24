@@ -14,6 +14,7 @@ import Soporte from '../pages/Soporte'
 import Login from '../pages/Login'
 import Admin from '../pages/Admin'
 import Agente from '../pages/Agente'
+import RegisterEcoTiquet from '../pages/RegisterEcoTiquet'
 
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -71,6 +72,8 @@ const RoutesApp = () => {
         <Route path="/soporte" element={<Soporte />} />
 
         <Route path="/login" element={<Login />} />
+
+        <Route path="/register" element={<RegisterEcoTiquet />} />  
 
 
         {/* Rutas que requieren login */}
