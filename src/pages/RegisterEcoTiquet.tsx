@@ -1,4 +1,5 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 
 // URL de imagen del Logo de EcoTiquet
 const ECOTIQUET_LOGO_URL: string = "./src/assets/logo.png";

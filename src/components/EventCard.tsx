@@ -16,6 +16,13 @@ export default function EventCard({ event }: EventCardProps) {
             .toUpperCase()
         : 'DATE'
 
+    const numericPrice = Number(event.price ?? 0)
+    const formattedPrice = numericPrice === 0 ? 'Gratis' : new Intl.NumberFormat('es-CO', {
+        style: 'currency',
+        currency: 'COP',
+        maximumFractionDigits: 0,
+    }).format(numericPrice)
+
     return (
         <article className="card h-100 overflow-hidden rounded-3 border-0 shadow-sm event-card">
             <div className="position-relative">
@@ -31,7 +38,7 @@ export default function EventCard({ event }: EventCardProps) {
                 </div>
             </div>
 
-            <div className="card-body d-flex gap-3 p-3">
+            <div className="card-body d-flex flex-column gap-2 p-3">
                 <div className="flex-grow-1">
                     <h3 className="h6 mb-2 fw-bold text-dark text-uppercase">
                         {event.title}
@@ -44,6 +51,13 @@ export default function EventCard({ event }: EventCardProps) {
                     <p className="mb-0 text-secondary">
                         {event.city}
                     </p>
+                </div>
+
+                <div className="d-flex justify-content-between align-items-center pt-2 border-top border-light-subtle">
+                    <span className="text-muted small">Precio</span>
+                    <strong className={numericPrice === 0 ? 'text-success' : 'text-dark'}>
+                        {formattedPrice}
+                    </strong>
                 </div>
             </div>
         </article>
